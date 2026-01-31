@@ -1,0 +1,72 @@
+POST http://127.0.0.1:8000/api/token/
+Content-Type: application/json
+
+{
+  "email": "admin@gmail.com",
+  "password": "test"
+}
+
+###
+
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY5ODU2ODMzLCJpYXQiOjE3Njk4NTY1MzQsImp0aSI6IjlhM2FiMTVkODEyZTQzN2NhNDJkZGQzYTc5MjRmNWExIiwidXNlcl9pZCI6IjEifQ.JBI-MaObYZs-vZKvBpJ6mrTBLBE-crjI1jquvtDZAyE
+
+
+
+
+###
+
+POST http://localhost:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+"refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2OTk0MTU2NiwiaWF0IjoxNzY5ODU1MTY2LCJqdGkiOiIxMmE5Nzg2YWViODk0MjMzODcyYjRiMjVhYWVlMTk4OCIsInVzZXJfaWQiOiIxIn0.S-L7_SCdxKvcnKz12u9f4Sfd792vnPmVCZ95k3UrieM"
+}
+
+###
+
+GET http://127.0.0.1:8000/api/appointments/
+Authorization: Bearer {{accessToken}}
+
+###
+
+GET http://127.0.0.1:8000/api/appointments/?doctor=1
+Authorization: Bearer {{accessToken}}
+
+### By status
+GET http://127.0.0.1:8000/api/appointments/?status=Completed
+Authorization: Bearer {{accessToken}}
+
+### By appointment date
+GET http://127.0.0.1:8000/api/appointments/?appointment_date=2026-02-01
+Authorization: Bearer {{accessToken}}
+
+
+### 
+
+GET http://127.0.0.1:8000/api/appointments/1/
+Authorization: Bearer {{accessToken}}
+
+
+### 
+
+GET http://127.0.0.1:8000/api/treatments/
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+GET http://127.0.0.1:8000/api/prescriptions/
+Authorization: Bearer {{accessToken}}
+
+
+### 
+
+POST http://127.0.0.1:8000/api/prescriptions/create/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "appointment": 1,
+  "treatment": [1],
+  "notes": "Take medicine twice daily"
+}
