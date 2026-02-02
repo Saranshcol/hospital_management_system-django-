@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "hospital-management-system-django-fist.onrender.com",
+    ".onrender.com",
     "localhost",
     "127.0.0.1",
 ]
